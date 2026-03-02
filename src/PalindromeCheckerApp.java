@@ -1,10 +1,10 @@
 import java.util.Scanner;
 /**
  * =========================================================
- * MAIN CLASS - UseCase1PalindromeCheckerApp
+ * MAIN CLASS - UseCase3PalindromeCheckerApp
  * =========================================================
  *
- * Use Case 1: Application Entry & Welcome Message
+ * Use Case 3: Reverse String Based Palindrome Check
  *
  * Description:
  * This class represents the entry point of the
@@ -20,7 +20,7 @@ import java.util.Scanner;
  * The goal is to establish a clear startup flow.
  *
  * @author Developer
- * @version 1.0
+ * @version 3.0
  */
 
 public class PalindromeCheckerApp {
@@ -37,18 +37,13 @@ public class PalindromeCheckerApp {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Input Text: ");
         String name = scanner.nextLine();
-        int j = name.length() - 1;
-        boolean isPalindrome = true;
-        for (int i = 0; i < name.length() / 2; i++) {
-
-            if (name.charAt(i) != name.charAt(j)) {
-                isPalindrome = false;
-                break;   // stop checking once mismatch found
-            }
-
-            j--;  // move backward
+        String reversed = "";
+        for(int i=name.length()-1;i>=0;i--){
+            reversed += name.charAt(i);
         }
-        System.out.println("Is it a Palindrome? : " + isPalindrome);
+        if(reversed.equals(name)){
+            System.out.println("String is Palindrome");
+        }
         scanner.close();
     }
 }
