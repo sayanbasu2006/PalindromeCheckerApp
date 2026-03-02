@@ -1,24 +1,22 @@
 import java.util.Scanner;
-import java.util.Stack;
-import java.util.Queue;
-import java.util.LinkedList;
+import java.util.Deque;
+import java.util.ArrayDeque;
 
 /**
  * =========================================================
- * MAIN CLASS - UseCase6PalindromeCheckerApp
+ * MAIN CLASS - UseCase7PalindromeCheckerApp
  * =========================================================
  *
- * Use Case 6: Queue + Stack Based Palindrome Checker
+ * Use Case 7: Deque-Based Optimized Palindrome Checker
  *
  * Goal:
- * Demonstrate FIFO vs LIFO using Queue and Stack.
+ * Use Deque to compare front and rear elements.
  *
- * Data Structures Used:
- * - Stack (LIFO)
- * - Queue (FIFO)
+ * Data Structure Used:
+ * - Deque (Double Ended Queue)
  *
  * @author Developer
- * @version 6.0
+ * @version 7.0
  */
 
 public class PalindromeCheckerApp {
@@ -30,25 +28,22 @@ public class PalindromeCheckerApp {
         System.out.print("Input Text: ");
         String text = scanner.nextLine();
 
-        Stack<Character> stack = new Stack<>();
-        Queue<Character> queue = new LinkedList<>();
+        Deque<Character> deque = new ArrayDeque<>();
 
-        // Step 1: Insert into Stack and Queue
+        // Step 1: Insert characters into Deque
         for (int i = 0; i < text.length(); i++) {
-            char ch = text.charAt(i);
-            stack.push(ch);     // LIFO
-            queue.add(ch);      // FIFO
+            deque.addLast(text.charAt(i));
         }
 
-        // Step 2: Compare dequeue vs pop
         boolean isPalindrome = true;
 
-        while (!stack.isEmpty()) {
+        // Step 2: Compare front and rear
+        while (deque.size() > 1) {
 
-            char fromStack = stack.pop();      // reverse order
-            char fromQueue = queue.remove();  // original order
+            char front = deque.removeFirst();
+            char rear = deque.removeLast();
 
-            if (fromStack != fromQueue) {
+            if (front != rear) {
                 isPalindrome = false;
                 break;
             }
