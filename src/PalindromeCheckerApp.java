@@ -2,24 +2,23 @@ import java.util.Scanner;
 
 /**
  * =========================================================
- * MAIN CLASS - UseCase9PalindromeCheckerApp
+ * MAIN CLASS - UseCase10PalindromeCheckerApp
  * =========================================================
  *
- * Use Case 9: Recursive Palindrome Checker
+ * Use Case 10: Case-Insensitive & Space-Ignored Palindrome
  *
  * Goal:
- * Check palindrome using recursion.
+ * Ignore spaces and case while checking palindrome.
  *
  * Concepts Used:
- * - Recursion
- * - Base condition
- * - Call stack
+ * - String preprocessing
+ * - Regular expressions
  *
  * @author Developer
- * @version 9.0
+ * @version 10.0
  */
 
-public class UseCase9PalindromeCheckerApp {
+public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
@@ -28,31 +27,32 @@ public class UseCase9PalindromeCheckerApp {
         System.out.print("Input Text: ");
         String text = scanner.nextLine();
 
-        boolean result = isPalindrome(text, 0, text.length() - 1);
+        // Step 1: Normalize String
+        text = text.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 
-        if (result) {
+        // Step 2: Two Pointer Check
+        int left = 0;
+        int right = text.length() - 1;
+        boolean isPalindrome = true;
+
+        while (left < right) {
+
+            if (text.charAt(left) != text.charAt(right)) {
+                isPalindrome = false;
+                break;
+            }
+
+            left++;
+            right--;
+        }
+
+        // Step 3: Print Result
+        if (isPalindrome) {
             System.out.println("String is Palindrome");
         } else {
             System.out.println("String is NOT Palindrome");
         }
 
         scanner.close();
-    }
-
-    // Recursive Palindrome Method
-    public static boolean isPalindrome(String text, int start, int end) {
-
-        // Base Condition (middle reached)
-        if (start >= end) {
-            return true;
-        }
-
-        // If mismatch found
-        if (text.charAt(start) != text.charAt(end)) {
-            return false;
-        }
-
-        // Recursive call for inner substring
-        return isPalindrome(text, start + 1, end - 1);
     }
 }
