@@ -1,67 +1,61 @@
 import java.util.Scanner;
+import java.util.Stack;
+
 /**
  * =========================================================
- * MAIN CLASS - UseCase3PalindromeCheckerApp
+ * MAIN CLASS - UseCase5PalindromeCheckerApp
  * =========================================================
  *
- * Use Case 3: Reverse String Based Palindrome Check
+ * Use Case 5: Stack-Based Palindrome Checker
  *
- * Description:
- * This class represents the entry point of the
- * Palindrome Checker Management System.
+ * Goal:
+ * Use Stack to reverse characters and validate palindrome.
  *
- * At this stage, the application:
- * - Starts execution from the main() method
- * - Displays a welcome message
- * - Shows application version
- *
- * No palindrome logic is implemented yet.
- *
- * The goal is to establish a clear startup flow.
+ * Concepts Used:
+ * - Stack (LIFO)
+ * - Push operation
+ * - Pop operation
+ * - Reversal using stack
  *
  * @author Developer
- * @version 3.0
+ * @version 5.0
  */
 
 public class PalindromeCheckerApp {
 
-    /**
-     * Application entry point.
-     *
-     * This is the first method executed by the JVM
-     * when the program starts.
-     *
-     * @param args Command-line arguments
-     */
     public static void main(String[] args) {
-        public static void main(String[] args) {
 
-            Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
-            System.out.print("Input Text: ");
-            String text = scanner.nextLine();
+        System.out.print("Input Text: ");
+        String text = scanner.nextLine();
 
-            int left = 0;
-            int right = text.length() - 1;
-            boolean isPalindrome = true;
+        Stack<Character> stack = new Stack<>();
 
-            while (left < right) {
+        // Step 1: Push characters into stack
+        for (int i = 0; i < text.length(); i++) {
+            stack.push(text.charAt(i));
+        }
 
-                if (text.charAt(left) != text.charAt(right)) {
-                    isPalindrome = false;
-                    break;
-                }
+        // Step 2: Pop and compare
+        boolean isPalindrome = true;
 
-                left++;
-                right--;
+        for (int i = 0; i < text.length(); i++) {
+            char poppedChar = stack.pop();
+
+            if (text.charAt(i) != poppedChar) {
+                isPalindrome = false;
+                break;
             }
+        }
 
-            if (isPalindrome) {
-                System.out.println("String is Palindrome");
-            } else {
-                System.out.println("String is NOT Palindrome");
-            }
+        // Step 3: Print result
+        if (isPalindrome) {
+            System.out.println("String is Palindrome");
+        } else {
+            System.out.println("String is NOT Palindrome");
+        }
 
-            scanner.close();
+        scanner.close();
     }
 }
