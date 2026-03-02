@@ -34,16 +34,34 @@ public class PalindromeCheckerApp {
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Input Text: ");
-        String name = scanner.nextLine();
-        String reversed = "";
-        for(int i=name.length()-1;i>=0;i--){
-            reversed += name.charAt(i);
-        }
-        if(reversed.equals(name)){
-            System.out.println("String is Palindrome");
-        }
-        scanner.close();
+        public static void main(String[] args) {
+
+            Scanner scanner = new Scanner(System.in);
+
+            System.out.print("Input Text: ");
+            String text = scanner.nextLine();
+
+            int left = 0;
+            int right = text.length() - 1;
+            boolean isPalindrome = true;
+
+            while (left < right) {
+
+                if (text.charAt(left) != text.charAt(right)) {
+                    isPalindrome = false;
+                    break;
+                }
+
+                left++;
+                right--;
+            }
+
+            if (isPalindrome) {
+                System.out.println("String is Palindrome");
+            } else {
+                System.out.println("String is NOT Palindrome");
+            }
+
+            scanner.close();
     }
 }
